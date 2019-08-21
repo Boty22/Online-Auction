@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>User Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  margin: auto;
+  text-align: left;
+  background-color:#FFCD24;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+/*Navigation Begin*/
+.navigation {
+  display: flex;
+  justify-content: left;
+  background-color: #3d454f;
+}
+
+.navigation__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation__list-item {
+  box-sizing: border-box;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.66;
+  transition: opacity 0.25s;
+}
+
+.navigation__list:hover .navigation__list-item--selected {
+  padding-bottom: 1rem;
+  border-bottom: none;
+}
+
+.navigation__list-item:hover,
+.navigation__list-item--selected,
+.navigation__list:hover .navigation__list-item--selected:hover {
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5rem solid #fcbc19;
+  opacity: 1;
+}
+
+.navigation__list-item-icon {
+  color: #fcbc19;
+  /* Overwrite .material-icons default font-size */
+  font-size: 36px !important;
+}
+
+body {
+  background-color:#0B172A;
+}
+
+/*Navigation End*/
+</style>
+
+<div class="container">
+  <nav class="navigation">
+   <ul class="navigation__list">
+     <li class="navigation__list-item">
+       <a href="/home">
+         <i class="material-icons navigation__list-item-icon">home</i>
+       </a>
+     </li>
+     <li class="navigation__list-item">
+       <a href="/userProfile">
+         <i class="material-icons navigation__list-item-icon">perm_identity</i>
+       </a>
+     </li>
+     <li class="navigation__list-item">
+       <a href="/items">
+         <i class="material-icons navigation__list-item-icon">add_shopping_cart</i>
+       </a>
+     </li>
+     <li class="navigation__list-item">
+       <a href="/items/createItem">
+         <i class="material-icons navigation__list-item-icon">note_add</i>
+      </a>
+     </li>
+   </ul>
+  </nav>
+</div>
+<body>
+    <div class="container">      
+      <div class ="card">
+        <h3 align="center">Bidding History</h3><br />
+        <table id="data-table" class="table table-bordered">
+             <thead>
+                  <tr>
+                       <th>Bid Id</th>
+                       <th>Bidding Price</th>
+                  </tr>
+             </thead>
+        </table>
+      </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <% if (itemBids) { %>
+    <script type="text/javascript">
+  $(document).ready(function(){
+    itemBidsData = JSON.parse('<%- JSON.stringify(itemBids) %>');
+        my_data = {"status":"success",
+             "data"     : itemBidsData};
+       $('#data-table').DataTable({
+            "data" : my_data.data,
+            "columns"     :     [
+                 {     "data"     :     "bidId"     },
+                 {     "data"     :     "biddingPrice"}
+            ]
+       });
+  });
+  </script>
+  <% } %>
+</body>
+</html>

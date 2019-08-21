@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>User Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  margin: auto;
+  text-align: left;
+  background-color:#FFCD24;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 0px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+/*Navigation Begin*/
+.navigation {
+  display: flex;
+  justify-content: left;
+  background-color: #3d454f;
+}
+
+.navigation__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation__list-item {
+  box-sizing: border-box;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.66;
+  transition: opacity 0.25s;
+}
+
+.navigation__list:hover .navigation__list-item--selected {
+  padding-bottom: 1rem;
+  border-bottom: none;
+}
+
+.navigation__list-item:hover,
+.navigation__list-item--selected,
+.navigation__list:hover .navigation__list-item--selected:hover {
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5rem solid #fcbc19;
+  opacity: 1;
+}
+
+.navigation__list-item-icon {
+  color: #fcbc19;
+  /* Overwrite .material-icons default font-size */
+  font-size: 36px !important;
+}
+
+body {
+  background-color:#0B172A;
+}
+
+/*Navigation End*/
+</style>
+
+<div class="container">
+  <nav class="navigation">
+   <ul class="navigation__list">
+     <li class="navigation__list-item">
+       <a href="home.html">
+         <i class="material-icons navigation__list-item-icon">home</i>
+       </a>
+     </li>
+     <li class="navigation__list-item navigation__list-item--selected">
+       <a href="user_profile.html">
+         <i class="material-icons navigation__list-item-icon">perm_identity</i>
+       </a>
+     </li>
+     <li class="navigation__list-item">
+       <a href="items">
+         <i class="material-icons navigation__list-item-icon">add_shopping_cart</i>
+       </a>
+     </li>
+     <li class="navigation__list-item">
+       <a href="items/createItem">
+         <i class="material-icons navigation__list-item-icon">note_add</i>
+      </a>
+     </li>
+   </ul>
+  </nav>
+</div>
+<body>
+
+  <div class="container">
+    <form class="card" action="https://localhost:3000/profile/edit">
+      <h1>Welcome to your profile, <%= user.username %></h1>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" >First name: </label>
+        <div class="col-sm-6"> <label> <%= user.firstName %> </label> </div> 
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Last name: </label> 
+        <div class="col-sm-6"> <label><%= user.lastName %></label> </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Street Address: </label> 
+        <div class="col-sm-6">  <label><%= user.streetAddress%></label> </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">City: </label> 
+        <div class="col-sm-6">  <label><%= user.city%></label> </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">State: </label> 
+        <div class="col-sm-6">  <label><%= user.state%></label>  </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Country: </label> 
+        <div class="col-sm-6"> <label><%= user.country%></label>  </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Zip Code: </label> 
+        <div class="col-sm-6">  <label><%= user.zipcode%></label> </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2">
+          <button type="submit" id="editButton" class="btn btn-dark" >Edit</button>
+          
+        </div>
+      </div>
+    </form>
+  </div>
+<!--
+  <script>
+    $(document).ready(function(){
+      $("#editButton").click(function(){
+        console.log("going to profile-update.ejs");
+        window.location.replace("https://localhost:3000/profile/edit");
+
+      });
+    });
+  </script>
+-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</body>
+</html>

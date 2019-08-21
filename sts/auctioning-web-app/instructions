@@ -1,0 +1,28 @@
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=auctionDB -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql:5.6
+
+{
+  id: 1,
+  name: "test",
+  description: "ABCD",
+  startingPrice: "10.99",
+  availability: true,
+  ownerAccountID: 1,
+  priceSold: 0
+}
+
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=auctionDB -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql:5.6
+mvn clean install -Dmaven.test.skip=true
+docker build . -t utd-web-app
+docker run -p 8086:8086 --name utd-web-app --link mysql-standalone:mysql -d utd-web-app
+
+docker exec -it mysql-standalone mysql -usa -ppassword
+insert into accounts (ID,First_Name,Last_Name,Street_Address,City,State,Country,ZipCode,Email) values (1, "John", "Doe" , "123 Main street", "Dallas", "Texas", "USA", "12345", "abc@xyz.com");
+
+GRANT ALL PRIVILEGES ON *.* to 'sa'@'%';
+FLUSH PRIVILEGES;
+
+curl https://localhost:3000/items --insecure --silent --write-out "%{size_download}\n" --output /dev/null
+curl https://localhost:3000/items --insecure --silent -H "Accept-Encoding: gzip,deflate" --write-out "%{size_download}\n" --output /dev/null
+

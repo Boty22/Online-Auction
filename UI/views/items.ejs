@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <title>Order Summary</title>
+          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     </head>
+     <style>
+     .carousel .item{
+         min-height: 100px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+     }
+     .carousel .item img{
+         margin: 0 auto; /* Align slide image horizontally center */
+     }
+
+     .carousel-inner{
+       height: 400px;
+     }
+
+     body {
+       background-color:#0B172A;
+       color: white;
+     }
+
+
+     #auction-navigation-bar{
+       background-color: #0B172A;
+     }
+
+     #myCarousel{
+         background-color:#FFCD24;
+     }
+
+     /*Navigation Begin */
+     .navigation {
+       display: flex;
+       justify-content: left;
+       background-color: #3d454f;
+     }
+
+     .navigation__list {
+       display: flex;
+       list-style: none;
+       padding: 0;
+       margin: 0;
+     }
+
+     .navigation__list-item {
+       box-sizing: border-box;
+       padding: 1rem;
+       cursor: pointer;
+       user-select: none;
+       opacity: 0.66;
+       transition: opacity 0.25s;
+     }
+
+     .navigation__list:hover .navigation__list-item--selected {
+       padding-bottom: 1rem;
+       border-bottom: none;
+     }
+
+     .navigation__list-item:hover,
+     .navigation__list-item--selected,
+     .navigation__list:hover .navigation__list-item--selected:hover {
+       padding-bottom: 0.5rem;
+       border-bottom: 0.5rem solid #fcbc19;
+       opacity: 1;
+     }
+
+     .navigation__list-item-icon {
+       color: #fcbc19;
+       /* Overwrite .material-icons default font-size */
+       font-size: 36px !important;
+     }
+     /*Navigation End*/
+     </style>
+     <body>
+          <div class="container">
+            <div class="container">
+              <nav class="navigation">
+               <ul class="navigation__list">
+                 <li class="navigation__list-item">
+                   <a href="/home">
+                     <i class="material-icons navigation__list-item-icon">home</i>
+                   </a>
+                 </li>
+                 <li class="navigation__list-item">
+                   <a href="/profile">
+                     <i class="material-icons navigation__list-item-icon">perm_identity</i>
+                   </a>
+                 </li>
+                 <li class="navigation__list-item">
+                   <a href="/items">
+                     <i class="material-icons navigation__list-item-icon">add_shopping_cart</i>
+                   </a>
+                 </li>
+                 <li class="navigation__list-item">
+                   <a href="/items/createItem">
+                     <i class="material-icons navigation__list-item-icon">note_add</i>
+                  </a>
+                 </li>
+               </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="container">
+               <h3 align="center">Order Summary</h3><br />
+               <table id="data-table" class="table table-bordered">
+                    <thead>
+                         <tr>
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Description</th>
+                              <th>Availability</th>
+                              <th>Price</th>
+                              <th>Date</th>                              
+                         </tr>
+                    </thead>
+               </table>
+          </div>
+     </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<% if (items) { %>
+  <script type="text/javascript">
+$(document).ready(function(){
+  itemData = JSON.parse('<%- JSON.stringify(items) %>');
+      my_data = {"status":"success",
+           "data"     : itemData};
+     $('#data-table').DataTable({
+          "data" : my_data.data,
+          "columns"     :     [
+               {     "data"     :     "id"     },
+               {     "data"     :     "name"},
+               {     "data"     :     "description"},
+               {     "data"     :     "availability"},
+               {     "data"     :     "priceSold"},
+               {     "data"     :     "date"}
+          ]
+     });
+     $('tr').click(function(){
+       var tableData = $(this).children("td").map(function() {
+       return $(this).text();
+        }).get();
+        window.location = "https://localhost:3000/items/item/" + tableData[0];
+     });
+});
+</script>
+<% } %>

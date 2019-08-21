@@ -1,0 +1,183 @@
+{
+	"variables": [],
+	"info": {
+		"name": "AuctioningWebApp",
+		"_postman_id": "301e9e42-e2fd-08e2-cfd8-25fcaa9daafe",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auction Web App",
+			"description": "",
+			"item": [
+				{
+					"name": "Get All Items",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/items/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Item",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/items/8",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Item",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/items/create/16",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Apples\",\n  \"description\": \"Dozen Green Apples\",\n  \"startingPrice\": \"2.99\",\n  \"availability\": true,\n  \"priceSold\": 0,\n  \"date\": \"2018-11-23\"\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Accounts",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/accounts/all",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/accounts/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Mary\",\n    \"lastName\": \"Johnson\",\n    \"streetAddress\": \"456 Main street\",\n    \"city\": \"Dallas\",\n    \"state\": \"Texas\",\n    \"country\": \"USA\",\n    \"zipcode\": \"12345\",\n    \"email\": \"abc@xyz.com\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Schedules",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/bidding/all",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Schedule",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/bidding/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"date\": \"2018-11-23\",\n\t\"startTime\" : \"2018-11-23 09:00:00\",\n\t\"endTime\" : \"2018-11-23 16:00:00\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Schedules For Date",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/bidding/getSchedules",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"date\": \"2018-11-23\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Post Bid",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/itemBid/create/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"itemId\" : 8,\n\t\"accountId\": 16,\n\t\"biddingPrice\" : 8.99\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "QueryByGoogleId",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/accounts/google/111902420642001097513",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "QueryAccountsByAccountId",
+					"request": {
+						"url": "localhost:8086/auctionwebapp/accounts/16",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

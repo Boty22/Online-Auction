@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style type="text/css">
+
+.carousel .item{
+    min-height: 100px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+.carousel .item img{
+    margin: 0 auto; /* Align slide image horizontally center */
+}
+
+.carousel-inner{
+  height: 400px;
+}
+
+body {
+  background-color:#0B172A;
+}
+
+
+#auction-navigation-bar{
+  background-color: #0B172A;
+}
+
+#myCarousel{
+    background-color:#FFCD24;
+}
+
+/*Navigation Begin */
+.navigation {
+  display: flex;
+  justify-content: left;
+  background-color: #3d454f;
+}
+
+.navigation__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation__list-item {
+  box-sizing: border-box;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.66;
+  transition: opacity 0.25s;
+}
+
+.navigation__list:hover .navigation__list-item--selected {
+  padding-bottom: 1rem;
+  border-bottom: none;
+}
+
+.navigation__list-item:hover,
+.navigation__list-item--selected,
+.navigation__list:hover .navigation__list-item--selected:hover {
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5rem solid #fcbc19;
+  opacity: 1;
+}
+
+.navigation__list-item-icon {
+  color: #fcbc19;
+  /* Overwrite .material-icons default font-size */
+  font-size: 36px !important;
+}
+
+.text-muted{
+  color: white;
+}
+
+.animation1{
+  background-color: blue;
+}
+
+.animation2{
+  background-color:#FFCD24;
+}
+
+button{
+  background-color: black;
+  color: white;
+}
+
+h3{
+  color: white;
+}
+/*Navigation End*/
+</style>
+</head>
+<body>
+  <div class="container">
+  <nav class="navigation">
+   <ul class="navigation__list">
+     <li class="navigation__list-item navigation__list-item--selected">
+       <i class="material-icons navigation__list-item-icon">home</i>
+     </li>
+     <li class="navigation__list-item">
+       <a href="/profile">
+         <i class="material-icons navigation__list-item-icon">perm_identity</i>
+       </a>
+     </li>
+     <li class="navigation__list-item">
+       <a href="/items">
+         <i class="material-icons navigation__list-item-icon">add_shopping_cart</i>
+       </a>
+     </li>
+     <li class="navigation__list-item">
+       <a href="/items/create">
+         <i class="material-icons navigation__list-item-icon">note_add</i>
+      </a>
+     </li>
+   </ul>
+ </nav>
+</div>
+<div class="container bs-example">
+    <div class="container">
+      <h3>Auctioning Web App</h3>
+      <div>
+          <h1>Login using...</h1>
+      </div>
+      <div>
+          <a class="google-btn" href="/auth/google">Google+</a>
+      </div>
+    </div>
+</div>
+<script>
+  $(document).ready(function(){
+      $("#b1").click(function(){
+        $( "#myCarousel" ).hide( "slow", function() {
+          alert( "Animation complete." );
+        });
+      });
+      $("#b2").click(function(){
+        $( "#myCarousel" ).show( "slow", function() {
+        });
+      });
+      $("#b3").dblclick(function(){
+        $("#myCarousel").fadeOut(3000);
+      });
+      $("#b4").dblclick(function(){
+        $("#myCarousel").fadeIn(3000);
+      });
+      $( "#b5" ).mouseover(function() {
+        $( "#innerCarousel" ).addClass( "animation1");
+      }).mouseout(function() {
+        $( "#innerCarousel" ).removeClass( "animation1");
+        $( "#innerCarousel" ).addClass( "animation2");
+        alert("Done");
+      });
+    });
+
+</script>
+</body>
+</html>
